@@ -12,27 +12,35 @@ const Semaforo = () => {
 	const turnOnRedlight = () => {
 		// Se modifica el estado mediante setRedlight
 		// si el state depende de un estado previo usar la forma con funcion (prevState) => newState
-		setRedlight(prevRed =>
-			prevRed == "color1"
-				? (prevRed = "color1-ligth")
-				: (prevRed = "color1")
-		);
+		//setRedlight(prevRed => prevRed == "color1" ? (prevRed = "color1-ligth")	: (prevRed = "color1"));
+
+		if (redlight == "color1") {
+			setRedlight(prevRed => (prevRed = "color1-ligth"));
+			setYellowlight(prevRed => (prevRed = "color2"));
+			setGreenlight(prevRed => (prevRed = "color3"));
+		} else {
+			setRedlight(prevRed => (prevRed = "color1"));
+		}
 	};
 
 	const turnOnYellowlight = () => {
-		setYellowlight(prevYellow =>
-			prevYellow == "color2"
-				? (prevYellow = "color2-ligth")
-				: (prevYellow = "color2")
-		);
+		if (yellowlight == "color2") {
+			setRedlight(prevRed => (prevRed = "color1"));
+			setYellowlight(prevRed => (prevRed = "color2-ligth"));
+			setGreenlight(prevRed => (prevRed = "color3"));
+		} else {
+			setYellowlight(prevRed => (prevRed = "color2"));
+		}
 	};
 
 	const turnOnGreenlight = () => {
-		setGreenlight(prevGreen =>
-			prevGreen == "color3"
-				? (prevGreen = "color3-ligth")
-				: (prevGreen = "color3")
-		);
+		if (greenlight == "color3") {
+			setRedlight(prevRed => (prevRed = "color1"));
+			setYellowlight(prevRed => (prevRed = "color2"));
+			setGreenlight(prevRed => (prevRed = "color3-ligth"));
+		} else {
+			setGreenlight(prevRed => (prevRed = "color3"));
+		}
 	};
 
 	return (
